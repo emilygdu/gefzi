@@ -3,9 +3,8 @@ package database
 import (
 	"log"
 
-	"gorm.io/driver/sqlite"
+	sqlite "github.com/glebarez/sqlite"
 	"gorm.io/gorm"
-	_ "modernc.org/sqlite"
 )
 
 var DB *gorm.DB
