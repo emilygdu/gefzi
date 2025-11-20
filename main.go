@@ -19,17 +19,17 @@ func main() {
 	//CORS aktivieren fürs Frontend
 	r.Use(cors.Default())
 
-	//Test Get (Beispielroute)
+	//Test Get (Beispielroute) -> später entfernen
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Yayy der erste Test klappt",
 		})
 	})
 
-	//eigene API-Routen registrieren
-	routes.RegisterGroupCalenderRoutes(r)
+	//API-Routen registrieren
+	routes.RegisterGroupCalendarRoutes(r)
 	routes.RegisterUserRoutes(r)
-	//routes.RegisterEventRoutes(r)
+	routes.RegisterEventRoutes(r)
 
 	//Logik für Login
 
