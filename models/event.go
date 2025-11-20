@@ -13,8 +13,7 @@ type Event struct {
 	//User-Termin
 	UserID uint `json:"user_id"`
 	//Gruppen-Termin
-	GroupCalenderID uint `json:"group_calender_id"`
+	GroupCalendarID uint `json:"group_calendar_id"`
 }
 
 //Begründung warum wir keine Termin Beschreibung haben, Begründung auch für Termin Titel
-//Datum ergänzen, mit GroupCalender verknüpfen

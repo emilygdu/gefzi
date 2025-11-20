@@ -7,5 +7,5 @@ type User struct {
 	Email           string        `json:"email"`
 	Phone           string        `json:"phone"`
 	GroupCalendarID uint          `json:"group_calendar_id"`
-	GroupCalender   GroupCalender `gorm:"foreignKey:GroupCalenderID" json:"group_calendar,omitempty"`
+	GroupCalendar   GroupCalendar `gorm:"foreignKey:GroupCalendarID" json:"group_calendar,omitempty"`
 }
