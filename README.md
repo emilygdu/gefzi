@@ -33,6 +33,7 @@ The server runs on http://localhost:8080
 ## API Endpoints
 #### Users
 `GET /users` → List all users (including their group calendars)
+
 `POST /users` → Create a new user
 
 Example JSON Body for POST /users:
@@ -47,6 +48,7 @@ Example JSON Body for POST /users:
 
 #### Events
 `GET /events` → List all events
+
 `POST /events` → Create a new event
 
 Example JSON Body for POST /events:
@@ -62,6 +64,7 @@ Example JSON Body for POST /events:
 
 #### GroupCalendars
 `GET /groupcalendars` → List all group calendars (including members)
+
 `POST /groupcalendars` → Create a new group calendar
 
 Example JSON Body for POST /groupcalendars:
