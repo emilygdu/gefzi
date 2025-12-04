@@ -11,6 +11,35 @@ GEFZI is a student project web application that allows multiple users to find co
 - SQLite database file included in the repository (`db.sqlite`)  
 - No additional dependencies required (Node.js/npm not needed)
 
+## Structure
+
+```bash
+├── cmd/
+│   └── server/
+│       └── main.go
+│
+├── db/
+│   └── gefzi.db
+│
+├── internal/
+│   ├── database/
+│   │   └── connection.go
+│   │
+│   ├── models/
+│   │   ├── event.go
+│   │   ├── group_calendar.go
+│   │   └── user.go
+│   │
+│   └── routes/
+│       ├── event_routes.go
+│       ├── group_calendar_routes.go
+│       └── user_routes.go
+│
+├── go.mod
+├── go.sum
+└── README.md
+```
+
 ## Installation
 1. Clone the repository:  
    ```

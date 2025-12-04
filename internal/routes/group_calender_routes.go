@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"gefzi/database"
-	"gefzi/models"
+	"gefzi/internal/database"
+	"gefzi/internal/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

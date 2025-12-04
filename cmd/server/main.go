@@ -1,9 +1,9 @@
 package main
 
 import (
-	"gefzi/database"
-	"gefzi/models"
-	"gefzi/routes"
+	"gefzi/internal/database"
+	"gefzi/internal/models"
+	"gefzi/internal/routes"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
