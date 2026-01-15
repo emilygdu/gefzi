@@ -1,0 +1,6 @@
+# Lokale SQLite Datenbanken
+db/*.db
+
+# Optional: OS / Editor Müll
+.DS_Store
+.vscode/
