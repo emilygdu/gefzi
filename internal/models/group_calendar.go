@@ -1,7 +1,7 @@
 package models
 
 type GroupCalendar struct {
-	GroupCalendarID uint   `gorm:"primaryKey" json:"grup_calendar_id"`
+	GroupCalendarID uint   `gorm:"primaryKey" json:"group_calendar_id"`
 	Name            string `json:"name"`
 	WorkStart       string `json:"work_start"`
 	WorkEnd         string `json:"work_end"`
