@@ -11,7 +11,7 @@ var DB *gorm.DB
 
 func Connect() {
 	var err error
-	DB, err = gorm.Open(sqlite.Open("gefzi.db"), &gorm.Config{})
+	DB, err = gorm.Open(sqlite.Open("db/gefzi.db"), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Fehler bei der Verbindung mit der Datenbank", err)
 	}
