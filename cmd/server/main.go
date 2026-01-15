@@ -30,10 +30,7 @@ func main() {
 	routes.RegisterGroupCalendarRoutes(r)
 	routes.RegisterUserRoutes(r)
 	routes.RegisterEventRoutes(r)
-
-	//Logik für Login
-
-	//Logik für freie Zeiträume berechnen
+	routes.RegisterAvailabilityRoutes(r)
 
 	//Server starten (localhost)
 	r.Run(":8080")
