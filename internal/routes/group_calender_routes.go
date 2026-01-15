@@ -4,6 +4,7 @@ import (
 	"gefzi/internal/database"
 	"gefzi/internal/models"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,6 +12,7 @@ import (
 // Routen Registrieren
 func RegisterGroupCalendarRoutes(c *gin.Engine) {
 	c.GET("/groupcalendars", GetGroupCalendars)
+	c.GET("/groupcalendars/:id", GetGroupCalendarsById)
 	c.POST("/groupcalendars", CreateGroupCalendars)
 }
 
@@ -25,6 +27,28 @@ func GetGroupCalendars(c *gin.Context) {
 		return //Fehlermeldung HTTP 500
 	}
 	c.JSON(http.StatusOK, calendars) //Erfolgreiche Antwort -> HTTP 200, Daten sind in calendars und werden in JSON umgewandelt & ausgegeben
+}
+
+// GET Gruppen Kalender by Id
+func GetGroupCalendarsById(c *gin.Context) {
+	idStr := c.Param("id")         // Id aus der URL lesen
+	id, err := strconv.Atoi(idStr) //String in int umwandeln -> da id in der URL immer als string übergeben wird
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "invalid groupcalendar id", //Fehlermeldung wenn id nicht vorhanden oder falsche id gesendet
+		})
+		return
+	}
+	var calendar models.GroupCalendar                             //Variable
+	result := database.DB.Preload("Members").First(&calendar, id) //Datenbankabfrage
+	if result.Error != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "groupcalendar not found",
+		})
+		return //Ausgabe Fehlermeldung wenn Kalender nicht gefunden
+	}
+
+	c.JSON(http.StatusOK, calendar) //rückgabe
 }
 
 // POST erstelle neuen Gruppen Kalender
