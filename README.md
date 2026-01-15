@@ -8,7 +8,7 @@ GEFZI is a student project web application that allows multiple users to find co
 
 ## Requirements
 - Go 1.25.2  
-- SQLite database file included in the repository (`db.sqlite`)  
+- SQLite database file excluded in the repository 
 - No additional dependencies required (Node.js/npm not needed)
 
 ## Structure
@@ -31,6 +31,8 @@ GEFZI is a student project web application that allows multiple users to find co
 │   │   └── user.go
 │   │
 │   └── routes/
+│       ├── availability_helpers.go
+│       ├── availability_routes.go
 │       ├── event_routes.go
 │       ├── group_calendar_routes.go
 │       └── user_routes.go
@@ -61,53 +63,76 @@ The server runs on http://localhost:8080
 
 ## API Endpoints
 #### Users
-`GET /users` → List all users (including their group calendars)
+GET /users → List all users
 
-`POST /users` → Create a new user
+POST /users → Create a new user
 
-Example JSON Body for POST /users:
-
-```
+Example JSON Body:
+```json
 {
-  "name": "Alice",
+  "first_name": "Alice",
+  "last_name": "Example",
   "email": "alice@example.com",
   "group_calendar_id": 1
 }
 ```
 
+#### Group Calendars
+GET /groupcalendars → List all group calendars
+
+POST /groupcalendars → Create a new group calendar
+
+Example JSON Body:
+```json
+{
+  "name": "Project Team",
+  "work_start": "08:00",
+  "work_end": "17:00",
+  "weekend_blocked": true
+}
+```
+
 #### Events
-`GET /events` → List all events
+Events represent blocked time slots in a group calendar.
+They are used to calculate free time (availability) and are not returned as free slots.
 
-`POST /events` → Create a new event
+GET /events → List all events
 
-Example JSON Body for POST /events:
+POST /events → Create a new event
 
-```
+Example JSON Body:
+```json
 {
-  "title": "Team Meeting",
-  "start_time": "2025-11-22T10:00:00",
-  "end_time": "2025-11-22T11:00:00",
-  "user_id": 1
+  "date": "2026-01-29",
+  "start_time": "09:00",
+  "end_time": "10:00",
+  "visibility": "private",
+  "group_calendar_id": 1
 }
 ```
 
-#### GroupCalendars
-`GET /groupcalendars` → List all group calendars (including members)
+#### Availability
+GET /availability/month
 
-`POST /groupcalendars` → Create a new group calendar
+Query Parameters:
+- group_calendar_id (int)
+- year (int)
+- month (int, 1–12)
 
-Example JSON Body for POST /groupcalendars:
+Example:
+GET /availability/month?group_calendar_id=1&year=2026&month=1
 
-```
-{
-  "name": "Projectteam"
-}
-```
+Response:
+Returns all free time slots per day within the defined working hours.
+
+
 
 ## Notes
-The included SQLite database file (db.sqlite) already contains sample data. No additional setup is required.
+- The SQLite database file is not tracked in the repository.
+- A new database is created automatically on server start.
+- Database tables are auto-migrated on startup using GORM.
+- Events represent blocked time slots and are used to calculate availability.
+- Both private and business events block time equally; the distinction is only relevant for frontend visualization.
+- CORS is enabled to allow frontend development and testing.
 
-The server automatically migrates the tables for User and Event on start.
-
-CORS is enabled for frontend testing.
 
