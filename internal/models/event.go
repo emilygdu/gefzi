@@ -11,5 +11,3 @@ type Event struct {
 	//Gruppen-Termin
 	GroupCalendarID uint `json:"group_calendar_id"`
 }
-
-//Begründung warum wir keine Termin Beschreibung haben, Begründung auch für Termin Titel

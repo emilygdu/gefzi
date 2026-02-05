@@ -8,5 +8,3 @@ type GroupCalendar struct {
 	WeekendBlocked  bool   `json:"weekend_blocked"`
 	Members         []User `gorm:"foreignKey:GroupCalendarID" json:"members,omitempty"`
 }
-
-// Ausblick man könnte wenn Kalender erstellbar sind noch eine Auswahl von den Symbolen hinzufügen
